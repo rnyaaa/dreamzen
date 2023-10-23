@@ -6,13 +6,13 @@ This is then going to be used for a blatant LSD Dream Emulator ripoff or whateve
 
 It's just a little zen project for no other purpose other than just to try it out
 
-#To-do
+# To-do
 
  1. Figure out what sort of features this engine would have - it would need to be true-ish to the limitations of ps1.
  2. Program that stuff, starting with the tests on the lowest level requirements at the math-level
  3. Everything else lol
 
-#Neat ideas
+# Neat ideas
 
   Fog. Like have everything else very ps1 low grade stuff but have really fancy fog in it. 
   I like it to be scary and that seems like a good feature that would totally up the weirdness factor.
