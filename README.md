@@ -28,3 +28,4 @@ It's just a little zen project for no other purpose other than just to try it ou
   I want to be able to model objects in blender and then import it into the game.
 
 ### Parallax ps1 handling
+  Jökull said this was neat
