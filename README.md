@@ -1,4 +1,4 @@
-# dreamzen
+## dreamzen
 
 Attempting to create a PS1 style game engine (Gouraud lighting, low polygon counts, limitations, etc..) 
 
