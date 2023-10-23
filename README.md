@@ -14,15 +14,15 @@ It's just a little zen project for no other purpose other than just to try it ou
 
 ## Neat ideas
 
-###Fog 
+### Fog
   Like have everything else very ps1 low grade stuff but have really fancy fog in it. 
   I like it to be scary and that seems like a good feature that would totally up the weirdness factor.
   
-###Sounds behaving in space
+### Sounds behaving in space
   I like the idea of modelling the way sound bounces in environments. Find a way to work that into the engine.
 
-###Gouraud lighting
+### Gouraud lighting
   It looks so crappy in a very PS1 style way. Figure out how to implement that while still having fancy fog.
 
-###OBJ file compatibility
+### OBJ file compatibility
   I want to be able to model objects in blender and then import it into the game.
