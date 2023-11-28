@@ -1,22 +1,30 @@
-// File: math_utils.cpp
-// Description: Implement functions and classes for vector and matrix operations, 
-// as well as geometry-related calculations.
-#include "math_utils.h"
+// // File: math_utils.cpp
+// #include "math_utils.h"
 
-glm::vec3 MathUtils::crossProduct(const glm::vec3& a, const glm::vec3& b) {
-    return glm::cross(a, b);
-}
+// // Vector operations
+// Vector3 Vector3::cross(const Vector3& other) const {
+//     return Vector3(
+//         y * other.z - z * other.y,
+//         z * other.x - x * other.z,
+//         x * other.y - y * other.x
+//     );
+// }
 
-float MathUtils::dotProduct(const glm::vec3& a, const glm::vec3& b) {
-    return glm::dot(a, b);
-}
+// float Vector3::dot(const Vector3& other) const {
+//     return x * other.x + y * other.y + z * other.z;
+// }
 
-glm::mat4 MathUtils::createTransformationMatrix(const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale) {
-    glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
-    glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f))
-                            * glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f))
-                            * glm::rotate(glm::mat4(1.0f), glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-    glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
+// // Matrix operations
+// Matrix4x4 Matrix4x4::createTranslation(const Vector3& translation) {
+//     // Implementation for translation
+// }
 
-    return translationMatrix * rotationMatrix * scaleMatrix;
-}
+// Matrix4x4 Matrix4x4::createRotation(const Vector3& rotation) {
+//     // Implementation for rotation
+// }
+
+// Matrix4x4 Matrix4x4::createScale(const Vector3& scale) {
+//     // Implementation for scale
+// }
+
+// // Other implementations if needed

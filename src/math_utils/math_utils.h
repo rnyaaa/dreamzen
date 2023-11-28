@@ -1,47 +1,42 @@
-// File: math_utils.h
-// Description: Define functions and classes for vector and matrix operations, 
-// as well as geometry-related calculations.
-#ifndef MATH_UTILS_H
-#define MATH_UTILS_H
-#pragma once
+// // File: math_utils.h
+// #ifndef MATH_UTILS_H
+// #define MATH_UTILS_H
 
-#include <glm/glm.hpp> // Assuming you're using the GLM library for math operations
+// class Vector3 {
+// public:
+//     float x, y, z;
 
-class MathUtils {
-public:
-    // Vector operations
-    static glm::vec3 crossProduct(const glm::vec3& a, const glm::vec3& b);
-    static float dotProduct(const glm::vec3& a, const glm::vec3& b);
+//     Vector3(float x, float y, float z);
 
-    // Matrix operations
-    static glm::mat4 createTransformationMatrix(const glm::vec3& translation, const glm::vec3& rotation, const glm::vec3& scale);
-};
+//     // Vector operations
+//     Vector3 cross(const Vector3& other) const;
+//     float dot(const Vector3& other) const;
 
-#endif
+//     // Other vector operations if needed
+// };
 
-// Vector 3 // Vector 3 // Vector 3 // Vector 3 // Vector 3 // Vector 3 // Vector 3 // Vector 3 // Vector 3 // Vector 3
-class Vector3 {
-public:
-    float x, y, z;
+// class Matrix4x4 {
+// public:
+//     float m[4][4];
 
-    Vector3(float x, float y, float z);
-    Vector3 operator+(const Vector3& other) const;
-    Vector3 operator-(const Vector3& other) const;
-    Vector3 operator*(float scalar) const;
-    float dot(const Vector3& other) const;
-};
+//     Matrix4x4();
 
-// Matrix 4x4 // Matrix 4x4 // Matrix 4x4 // Matrix 4x4 // Matrix 4x4 // Matrix 4x4 // Matrix 4x4 // Matrix 4x4 // Matrix 4x4 
-class Matrix4x4 {
-public:
-    float m[4][4];
+//     // Matrix operations
+//     Matrix4x4 createTranslation(const Vector3& translation);
+//     Matrix4x4 createRotation(const Vector3& rotation);
+//     Matrix4x4 createScale(const Vector3& scale);
 
-    Matrix4x4();
+//     // Other matrix operations if needed
+// };
 
-    static Matrix4x4 createTranslation(const Vector3& translation);
-    static Matrix4x4 createRotation(float angle, const Vector3& axis);
-    static Matrix4x4 createScale(const Vector3& scale);
+// class MathUtils {
+// public:
+//     // Vector operations
+//     static Vector3 crossProduct(const Vector3& a, const Vector3& b);
+//     static float dotProduct(const Vector3& a, const Vector3& b);
 
-    Matrix4x4 operator*(const Matrix4x4& other) const;
-    Vector3 operator*(const Vector3& vector) const;
-};
+//     // Matrix operations
+//     static Matrix4x4 createTransformationMatrix(const Vector3& translation, const Vector3& rotation, const Vector3& scale);
+// };
+
+// #endif
