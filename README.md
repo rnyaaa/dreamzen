@@ -1,10 +1,8 @@
-# dreamzen
+# game ngine
 
 Attempting to create a PS1 style game engine (Gouraud lighting, low polygon counts, limitations, etc..) 
 
-This is then going to be used for a blatant LSD Dream Emulator ripoff or whatever else would make sense at that point.
-
-It's just a little zen project for no other purpose other than just to try it out
+This is then going to be used for an RTS or a blatant LSD Dream Emulator ripoff or whatever else would make sense at that point.
 
 ## To-do
 
