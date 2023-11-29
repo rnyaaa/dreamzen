@@ -15,14 +15,20 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-
+void keyboard_callback(GLFWwindow* window);
 // Window settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-glm::vec3 camPos(100.0f, 100.0f, 100.0f);
-f32 orthoScale = 12.0f;
-f32 move_speed = 0.2f;
+glm::vec3 camPos(10.0f, 10.0f, 10.0f);
+glm::vec3 lookAt(0.0f, 0.0f, 0.0f);
+glm::vec3 cameraLeft(1.0f, -1.0f, 0.0f);
+glm::vec3 cameraForward(-1.0f, -1.0f, 0.0f);
+f32 orthoScale = 24.0f;
+f32 cameraMoveSpeed = 1.0f;
+f32 cameraZoomSpeed = 1.0f;
+f32 cameraZoomMax = 64.0f;
+f32 cameraZoomMin = 12.0f;
 
 
 int main() {
@@ -85,6 +91,11 @@ int main() {
     
     // Set up shader
     Shader ourShader("src/graphics/shaders/new_vertex_test.vs", "src/graphics/shaders/new_frag_test.fs");
+    if (!ourShader.compiled)
+    {
+        printf("Error compiling shader, exiting...\n");
+        exit(1);
+    }
     ourShader.use();
 
     // Set matrices
@@ -95,7 +106,6 @@ int main() {
 
     ourShader.setMat4("model", model);
 
-
     // Render loop
     while (!glfwWindowShouldClose(window)) {
         glm::mat4 projection = glm::ortho(
@@ -103,22 +113,25 @@ int main() {
             SCR_WIDTH/orthoScale, 
             SCR_HEIGHT/-orthoScale, 
             SCR_HEIGHT/orthoScale, 
-            0.001f, 
-            1000.0f
+            -1000.f, 
+            1000.f
         );
 
         ourShader.setMat4("projection", projection);
+
         glm::mat4 view = glm::lookAt(camPos,  // Eye position (view from the top)
-                                 glm::vec3(0.0f, 0.0f, 0.0f),  // Look-at position
-                                 glm::vec3(0.0f, 0.0f, 1.0f)); // Up vector
+                                     lookAt,  // Look-at position
+                                     glm::vec3(0.0f, 0.0f, 1.0f)); // Up vector
+
         ourShader.setMat4("view", view);
+
         // Process input
         processInput(window);
 
         glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
         // Rendering Loop (called every frame)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the color and depth buffers
-
+        keyboard_callback(window);
         int points_wide = 64;
         int points_long = 64;
         int totalVertices = (points_wide - 1) * (points_long - 1) * 2 * 3;
@@ -152,26 +165,33 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    orthoScale -= yoffset * 0.01f;
-    orthoScale = orthoScale < 1.0f ? 1.0f : orthoScale;
-    orthoScale = orthoScale > 32.0f ? 32.0f : orthoScale;
+    orthoScale -= yoffset * cameraZoomSpeed;
+    orthoScale = orthoScale < cameraZoomMin ? cameraZoomMin : orthoScale;
+    orthoScale = orthoScale > cameraZoomMax ? cameraZoomMax : orthoScale;
 }
 
-void keyboard_callback(GLFWwindow* window, double xpos, double ypos) {
-    if (glfwGetKey( GLFW_KEY_W ) == GLFW_PRESS){
-        camPos += forward * move_speed;
+void keyboard_callback(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) 
+    {
+        camPos += cameraMoveSpeed * cameraForward;
+        lookAt += cameraMoveSpeed * cameraForward;
     }
-    if (glfwGetKey( GLFW_KEY_A ) == GLFW_PRESS){
-        camPos += forward * move_speed;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    {
+        camPos -= cameraMoveSpeed * cameraForward;
+        lookAt -= cameraMoveSpeed * cameraForward;
     }
-    if (glfwGetKey( GLFW_KEY_S ) == GLFW_PRESS){
-        camPos += forward * move_speed;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    {
+        camPos += cameraMoveSpeed * cameraLeft;
+        lookAt += cameraMoveSpeed * cameraLeft;
     }
-    if (glfwGetKey( GLFW_KEY_D ) == GLFW_PRESS){
-        camPos += forward * move_speed;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    {
+        camPos -= cameraMoveSpeed * cameraLeft;
+        lookAt -= cameraMoveSpeed * cameraLeft;
     }
 }
-
 
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
