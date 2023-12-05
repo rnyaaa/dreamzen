@@ -32,5 +32,6 @@ This is then going to be used for an RTS or a blatant LSD Dream Emulator ripoff 
 ### OBJ file compatibility
   I want to be able to model objects in blender and then import it into the game.
 
+### Use the ENTT handling system when starting to implement entities
 ### Parallax ps1 handling
   Jökull said this was neat
